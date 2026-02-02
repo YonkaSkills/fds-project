@@ -3,8 +3,9 @@
 <head>
 <style>
 body {
- background-color: #CFEBDD;
+  background-color: #CFEBDD;
 }
+
 table {
   width:95%;
   border-radius: 5px;
@@ -13,6 +14,7 @@ table {
   color: #4E342E;
   margin: 40px auto;
 }
+
 th {
   background-color: #2F6F6A;
   border-radius: 5px;
@@ -21,6 +23,7 @@ th {
   padding:20px;
   color: #FFFFFF;
 }
+
 td {
   width: 100px;
   border: 1px solid #A8D5BA;
@@ -28,22 +31,32 @@ td {
   font-size: 25px;
   padding:15px;
   color: #000000;
+  vertical-align: top;
 }
+
 td:hover {
   background-color: #E6F4EA;
 }
+
 table, th, td {
   border:1px solid #6B2E2E;
 }
+
 b {
   display: block;
   text-align: center;
 }
+
 button {
-  margin-top: 5px;
+  margin: 5px;
   padding: 5px 10px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.qty {
+  font-size: 18px;
+  text-align: center;
 }
 </style>
 </head>
@@ -61,67 +74,85 @@ button {
 <tr>
 <td>
   <b>Upma - 20/-</b>
-  <button onclick="addItem(20)">Add</button>
+  <div class="qty">Qty: <span id="upma">0</span></div>
+  <button onclick="addItem('upma',20)">Add</button>
+  <button onclick="removeItem('upma',20)">Remove</button>
 </td>
 
 <td>
   <b>Puri - 30/-</b>
-  <button onclick="addItem(30)">Add</button>
+  <div class="qty">Qty: <span id="puri">0</span></div>
+  <button onclick="addItem('puri',30)">Add</button>
+  <button onclick="removeItem('puri',30)">Remove</button>
 </td>
 
 <td rowspan="4">
   <b>Idly</b>
   <ul>
-    <li>Idli - 20/- <button onclick="addItem(20)">Add</button></li>
-    <li>Sambar Idli - 25/- <button onclick="addItem(25)">Add</button></li>
-    <li>Carrot Idli - 30/- <button onclick="addItem(30)">Add</button></li>
-    <li>Beetroot Idli - 30/- <button onclick="addItem(30)">Add</button></li>
+    <li>
+      Idli - 20/-
+      Qty: <span id="idli">0</span><br>
+      <button onclick="addItem('idli',20)">Add</button>
+      <button onclick="removeItem('idli',20)">Remove</button>
+    </li>
+    <li>
+      Sambar Idli - 25/-
+      Qty: <span id="sidli">0</span><br>
+      <button onclick="addItem('sidli',25)">Add</button>
+      <button onclick="removeItem('sidli',25)">Remove</button>
+    </li>
+    <li>
+      Carrot Idli - 30/-
+      Qty: <span id="cidli">0</span><br>
+      <button onclick="addItem('cidli',30)">Add</button>
+      <button onclick="removeItem('cidli',30)">Remove</button>
+    </li>
+    <li>
+      Beetroot Idli - 30/-
+      Qty: <span id="bidli">0</span><br>
+      <button onclick="addItem('bidli',30)">Add</button>
+      <button onclick="removeItem('bidli',30)">Remove</button>
+    </li>
   </ul>
 </td>
 
 <td rowspan="4">
   <b>Dosa</b>
   <ul>
-    <li>Plain Dosa - 30/- <button onclick="addItem(30)">Add</button></li>
-    <li>Onion Dosa - 35/- <button onclick="addItem(35)">Add</button></li>
-    <li>Masala Dosa - 40/- <button onclick="addItem(40)">Add</button></li>
-    <li>Rawa Dosa - 40/- <button onclick="addItem(40)">Add</button></li>
-    <li>Egg Dosa - 45/- <button onclick="addItem(45)">Add</button></li>
-    <li>Pesaratu Upma - 45/- <button onclick="addItem(45)">Add</button></li>
+    <li>
+      Plain Dosa - 30/-
+      Qty: <span id="pdosa">0</span><br>
+      <button onclick="addItem('pdosa',30)">Add</button>
+      <button onclick="removeItem('pdosa',30)">Remove</button>
+    </li>
+    <li>
+      Onion Dosa - 35/-
+      Qty: <span id="odosa">0</span><br>
+      <button onclick="addItem('odosa',35)">Add</button>
+      <button onclick="removeItem('odosa',35)">Remove</button>
+    </li>
+    <li>
+      Masala Dosa - 40/-
+      Qty: <span id="mdosa">0</span><br>
+      <button onclick="addItem('mdosa',40)">Add</button>
+      <button onclick="removeItem('mdosa',40)">Remove</button>
+    </li>
+    <li>
+      Rawa Dosa - 40/-
+      Qty: <span id="rdosa">0</span><br>
+      <button onclick="addItem('rdosa',40)">Add</button>
+      <button onclick="removeItem('rdosa',40)">Remove</button>
+    </li>
+    <li>
+      Egg Dosa - 45/-
+      Qty: <span id="edosa">0</span><br>
+      <button onclick="addItem('edosa',45)">Add</button>
+      <button onclick="removeItem('edosa',45)">Remove</button>
+    </li>
   </ul>
 </td>
 </tr>
 
-<tr>
-<td>
-  <b>Mysore Bajji - 25/-</b>
-  <button onclick="addItem(25)">Add</button>
-</td>
-
-<td>
-  <b>Chapathi - 35/-</b>
-  <button onclick="addItem(35)">Add</button>
-</td>
-</tr>
-
-<tr>
-<td>
-  <b>Punugulu - 25/-</b>
-  <button onclick="addItem(25)">Add</button>
-</td>
-
-<td>
-  <b>Parotta - 35/-</b>
-  <button onclick="addItem(35)">Add</button>
-</td>
-</tr>
-
-<tr>
-<td colspan="2">
-  <b>Vada - 30/-</b>
-  <button onclick="addItem(30)">Add</button>
-</td>
-</tr>
 </table>
 
 <div style="width:95%; margin:20px auto; font-size:24px; text-align:center;">
@@ -133,10 +164,29 @@ button {
 let totalQty = 0;
 let totalPrice = 0;
 
-function addItem(price) {
+function addItem(id, price) {
+  let qtySpan = document.getElementById(id);
+  qtySpan.innerText = parseInt(qtySpan.innerText) + 1;
+
   totalQty++;
   totalPrice += price;
 
+  updateTotal();
+}
+
+function removeItem(id, price) {
+  let qtySpan = document.getElementById(id);
+  let currentQty = parseInt(qtySpan.innerText);
+
+  if (currentQty > 0) {
+    qtySpan.innerText = currentQty - 1;
+    totalQty--;
+    totalPrice -= price;
+    updateTotal();
+  }
+}
+
+function updateTotal() {
   document.getElementById("totalQty").innerText = totalQty;
   document.getElementById("totalPrice").innerText = totalPrice;
 }
