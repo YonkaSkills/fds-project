@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+ background-color: #CFEBDD;
+}
+table {
+  width:95%;
+  border-radius: 5px;
+  border-spacing: 5px;
+  background-color: #F9FFF6;
+  color: #4E342E;
+  margin: 40px auto;
+}
+th {
+  background-color: #2F6F6A;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 35px;
+  padding:20px;
+  color: #FFFFFF;
+}
+td {
+  width: 100px;
+  border: 1px solid #A8D5BA;
+  border-radius: 5px;
+  font-size: 25px;
+  padding:15px;
+  color: #000000;
+}
+td:hover {
+  background-color: #E6F4EA;
+}
+table, th, td {
+  border:1px solid #6B2E2E;
+}
+b {
+  display: block;
+  text-align: center;
+}
+button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<table>
+<tr>
+  <th colspan="14">Manam Restaurant</th>
+</tr>
+<tr>
+  <th colspan="14">Menu Items</th>
+</tr>
+
+<tr>
+<td>
+  <b>Upma - 20/-</b>
+  <button onclick="addItem(20)">Add</button>
+</td>
+
+<td>
+  <b>Puri - 30/-</b>
+  <button onclick="addItem(30)">Add</button>
+</td>
+
+<td rowspan="4">
+  <b>Idly</b>
+  <ul>
+    <li>Idli - 20/- <button onclick="addItem(20)">Add</button></li>
+    <li>Sambar Idli - 25/- <button onclick="addItem(25)">Add</button></li>
+    <li>Carrot Idli - 30/- <button onclick="addItem(30)">Add</button></li>
+    <li>Beetroot Idli - 30/- <button onclick="addItem(30)">Add</button></li>
+  </ul>
+</td>
+
+<td rowspan="4">
+  <b>Dosa</b>
+  <ul>
+    <li>Plain Dosa - 30/- <button onclick="addItem(30)">Add</button></li>
+    <li>Onion Dosa - 35/- <button onclick="addItem(35)">Add</button></li>
+    <li>Masala Dosa - 40/- <button onclick="addItem(40)">Add</button></li>
+    <li>Rawa Dosa - 40/- <button onclick="addItem(40)">Add</button></li>
+    <li>Egg Dosa - 45/- <button onclick="addItem(45)">Add</button></li>
+    <li>Pesaratu Upma - 45/- <button onclick="addItem(45)">Add</button></li>
+  </ul>
+</td>
+</tr>
+
+<tr>
+<td>
+  <b>Mysore Bajji - 25/-</b>
+  <button onclick="addItem(25)">Add</button>
+</td>
+
+<td>
+  <b>Chapathi - 35/-</b>
+  <button onclick="addItem(35)">Add</button>
+</td>
+</tr>
+
+<tr>
+<td>
+  <b>Punugulu - 25/-</b>
+  <button onclick="addItem(25)">Add</button>
+</td>
+
+<td>
+  <b>Parotta - 35/-</b>
+  <button onclick="addItem(35)">Add</button>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+  <b>Vada - 30/-</b>
+  <button onclick="addItem(30)">Add</button>
+</td>
+</tr>
+</table>
+
+<div style="width:95%; margin:20px auto; font-size:24px; text-align:center;">
+  <b>Total Items Ordered:</b> <span id="totalQty">0</span><br>
+  <b>Total Price:</b> ₹<span id="totalPrice">0</span>
+</div>
+
+<script>
+let totalQty = 0;
+let totalPrice = 0;
+
+function addItem(price) {
+  totalQty++;
+  totalPrice += price;
+
+  document.getElementById("totalQty").innerText = totalQty;
+  document.getElementById("totalPrice").innerText = totalPrice;
+}
+</script>
+
+</body>
+</html>
