@@ -24,11 +24,12 @@ header h1 {
 .container { padding: 20px; }
 .hidden { display: none; }
 
-.category-list {
-    display: list;
-    grid-template-rows: repeat(minmax(160px, 1fr));
-    gap: 15px;
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	gap: 15px;
 }
+
 .category {
     background: white;
     padding: 25px;
@@ -575,6 +576,7 @@ function removeFromCart(index) {
 </body>
 
 </html>
+
 
 
 
