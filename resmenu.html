@@ -24,14 +24,17 @@ header h1 {
 .container { padding: 20px; }
 .hidden { display: none; }
 
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+.category-list {
+    display: list;
+    grid-template-rows: repeat(minmax(160px, 1fr));
     gap: 15px;
 }
 .category {
     background: white;
     padding: 25px;
+	margin-bottom: 15px;
+    margin-left: 300px;
+    margin-right: 300px;
     text-align: center;
     border-radius: 12px;
     font-size: 20px;
@@ -100,7 +103,7 @@ button {
 <!-- MAIN CATEGORIES -->
 <div id="categories">
 <h2>Menu Categories</h2>
-<div class="category-grid">
+<div class="category-list">
     <div class="category" onclick="openSection('tiffins')">Tiffins</div>
     <div class="category" onclick="openSection('noodles')">Noodles</div>
     <div class="category" onclick="openSection('firedrice')">Fried Rice</div>
@@ -572,6 +575,7 @@ function removeFromCart(index) {
 </body>
 
 </html>
+
 
 
 
