@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Social Media Caption Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .card {
+      background: #ffffff;
+      width: 380px;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #667eea;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #5563c1;
+    }
+
+    .output {
+      margin-top: 20px;
+      background: #f5f6fa;
+      padding: 12px;
+      border-radius: 8px;
+      min-height: 60px;
+      font-size: 14px;
+      color: #333;
+      white-space: pre-wrap;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Caption Generator</h2>
+
+    <label>Topic</label>
+    <input type="text" id="topic" placeholder="e.g. Yoga, Water Pollution">
+
+    <label>Tone</label>
+    <select id="tone">
+      <option value="motivational">Motivational</option>
+      <option value="informative">Informative</option>
+      <option value="funny">Funny</option>
+    </select>
+
+    <label>Platform</label>
+    <select id="platform">
+      <option value="Instagram">Instagram</option>
+      <option value="LinkedIn">LinkedIn</option>
+      <option value="Twitter">Twitter</option>
+    </select>
+
+    <button onclick="generateCaption()">Generate Caption</button>
+
+    <div class="output" id="result">
+      Your generated caption will appear here...
+    </div>
+
+    <div class="footer">
+      Powered by n8n Webhook
+    </div>
+  </div>
+
+  <script>
+    function generateCaption() {
+      const topic = document.getElementById("topic").value;
+      const tone = document.getElementById("tone").value;
+      const platform = document.getElementById("platform").value;
+
+      if (!topic) {
+        document.getElementById("result").innerText = "Please enter a topic.";
+        return;
+      }
+
+      const url =
+        `https://nagababu-n8n.app.n8n.cloud/webhook/caption-generator` +
+        `?topic=${encodeURIComponent(topic)}` +
+        `&tone=${encodeURIComponent(tone)}` +
+        `&platform=${encodeURIComponent(platform)}`;
+
+      document.getElementById("result").innerText = "Generating caption...";
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("result").innerText = data.caption || "No caption generated.";
+        })
+        .catch(err => {
+          document.getElementById("result").innerText = "Error connecting to server.";
+        });
+    }
+  </script>
+
+</body>
+</html>

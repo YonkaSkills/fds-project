@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Social Media Caption Generator</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: Arial, sans-serif;
+    }
+
+    .box {
+      background: #fff;
+      padding: 25px;
+      width: 360px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5563c1;
+    }
+
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f1f1f1;
+      border-radius: 6px;
+      min-height: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Caption Generator</h2>
+
+    <input type="text" id="topic" placeholder="Enter topic">
+
+    <select id="tone">
+      <option value="motivational">Motivational</option>
+      <option value="informative">Informative</option>
+      <option value="funny">Funny</option>
+    </select>
+
+    <select id="platform">
+      <option value="Instagram">Instagram</option>
+      <option value="LinkedIn">LinkedIn</option>
+      <option value="Twitter">Twitter</option>
+    </select>
+
+    <button onclick="generateCaption()">Generate Caption</button>
+
+    <div class="result" id="output">
+      Caption will appear here...
+    </div>
+  </div>
+
+  <script>
+    function generateCaption() {
+      const topic = document.getElementById("topic").value;
+      const tone = document.getElementById("tone").value;
+      const platform = document.getElementById("platform").value;
+
+      if (!topic) {
+        document.getElementById("output").innerText = "Please enter a topic";
+        return;
+      }
+
+      const url =
+        "https://nagababu-n8n.app.n8n.cloud/webhook/caption-generator" +
+        `?topic=${encodeURIComponent(topic)}` +
+        `&tone=${encodeURIComponent(tone)}` +
+        `&platform=${encodeURIComponent(platform)}`;
+
+      document.getElementById("output").innerText = "Generating caption...";
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("output").innerText = data.caption;
+        })
+        .catch(() => {
+          document.getElementById("output").innerText = "Server error";
+        });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manam Restaurant</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef7f3;
+    color: #222;
+}
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background: #1f6f5b;
+    color: white;
+}
+header h1 {
+    margin: 0;
+    font-size: 42px;
+}
+.container { padding: 20px; }
+.hidden { display: none; }
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+}
+.category {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.category:hover {
+    transform: scale(1.05);
+    background: #dff2ea;
+}
+
+/* NEW: Image styling for menu items */
+.item-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-card a {
+    text-decoration: none;
+    color: #1f6f5b;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.item-footer span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff7043;
+}
+
+button {
+    background: #1f6f5b;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #155a47;
+}
+.cart-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff7043;
+    padding: 14px 20px;
+    font-size: 16px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f9f9f9;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+.cart-item button {
+    background: #ff4444;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Manam Restaurant</h1>
+</header>
+
+<div class="container">
+
+<!-- MAIN CATEGORIES -->
+<div id="categories">
+<h2>Menu Categories</h2>
+<div class="category-grid">
+    <div class="category" onclick="openSection('tiffins')">🥘 Tiffins</div>
+    <div class="category" onclick="openSection('noodles')">🍜 Noodles</div>
+    <div class="category" onclick="openSection('friedrice')">🍚 Fried Rice</div>
+    <div class="category" onclick="openSection('biryani')">🍛 Biryani</div>
+    <div class="category" onclick="openSection('starters')">🍗 Starters</div>
+    <div class="category" onclick="openSection('adds')">🥄 ADDs</div>
+</div>
+</div>
+
+<!-- TIFFINS MAIN -->
+<div id="tiffins" class="hidden">
+<h2>Tiffins</h2>
+
+<!-- Upma -->
+<div class="item-card">
+    <img src="https://images.unsplash.com/photo-1630383249896-424e482df921?w=200&h=200&fit=crop" alt="Upma" class="item-image">
+    <div class="item-details">
+        <a href="https://drive.google.com/file/d/1nr7rbV9wgZH63klUFxpqHTLVeEIs5db1/view?usp=sharing">Upma</a>
+        <div class="item-footer">
+            <span>₹20</span>
+            <button onclick="addToCart('Upma',20)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Sub-categories -->
+<div class="category-grid">
+    <div class="category" onclick="openSection('idly')">Idly</div>
+    <div class="category" onclick="openSection('dosa')">Dosa</div>
+</div>
+
+<!-- Mysore Bajji -->
+<div class="item-card">
+    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=200&h=200&fit=crop" alt="Mysore Bajji" class="item-image">
+    <div class="item-details">
+        <a href="https://drive.google.com/file/d/1_c38k7UEZhVgC01uGNinANPZa2AeaK5t/view?usp=sharing">Mysore Bajji</a>
+        <div class="item-footer">
+            <span>₹25</span>
+            <button onclick="addToCart('Mysore Bajji',25)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Punugulu -->
+<div class="item-card">
+    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=200&h=200&fit=crop" alt="Punugulu" class="item-image">
+    <div class="item-details">
+        <a href="https://drive.google.com/file/d/1AL8Z_fGJTqPW5j6t50SxwUdJa_MRb_SV/view?usp=sharing">Punugulu</a>
+        <div class="item-footer">
+            <span>₹25</span>
+            <button onclick="addToCart('Punugulu',25)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Vada -->
+<div class="item-card">
+    <img src="https://images.unsplash.com/photo-1626074353765-517a65aded5c?w=200&h=200&fit=crop" alt="Vada" class="item-image">
+    <div class="item-details">
+        <a href="https://drive.google.com/file/d/1RpE8_cC3t3Kjz1rvCEO7gj8cOYJm_mDg/view?usp=sharing">Vada</a>
+        <div class="item-footer">
+            <span>₹30</span>
+            <button onclick="addToCart('Vada',30)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Puri -->
+<div class="item-card">
+    <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=200&h=200&fit=crop" alt="Puri" class="item-image">
+    <div class="item-details">
+        <a href="https://drive.google.com/file/d/161FrWuM5ZaT4Dk_rFrRPiiUb8WFa41Lz/view?usp=sharing">Puri</a>
+        <div class="item-footer">
+            <span>₹30</span>
+            <button onclick="addToCart('Puri',30)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Chapathi -->
+<div class="item-card">
+    <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=200&h=200&fit=crop" alt="Chapathi" class="item-image">
+    <div class="item-details">
+        <a href="https://drive.google.com/file/d/1NJ2tCnn3smJNySByIS0cTzOo12prGYrs/view?usp=sharing">Chapathi</a>
+        <div class="item-footer">
+            <span>₹35</span>
+            <button onclick="addToCart('Chapathi',35)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Parotta -->
+<div class="item-card">
+    <img src="https://images.unsplash.com/photo-1619221882420-7a0f5e00b4e5?w=200&h=200&fit=crop" alt="Parotta" class="item-image">
+    <div class="item-details">
+        <a href="https://drive.google.com/file/d/14wf6yhT09Ncf6zokXPagFQStzG7-igNw/view?usp=sharing">Parotta</a>
+        <div class="item-footer">
+            <span>₹35</span>
+            <button onclick="addToCart('Parotta',35)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+<!-- IDLY -->
+<div id="idly" class="hidden">
+	<h2>Idly Items</h2>
+
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=200&h=200&fit=crop" alt="Idly" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/18tehxt-ZcyYD2rrYVVOqJgcqlGReUxvr/view?usp=sharing">Idly</a>
+			<div class="item-footer">
+				<span>₹20</span>
+				<button onclick="addToCart('Idly',20)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1630383249896-424e482df921?w=200&h=200&fit=crop" alt="Sambar Idly" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/1dy3W1CW4N10TNBFMdS7oJwNSGi_RdTDP/view?usp=sharing">Sambar Idly</a>
+			<div class="item-footer">
+				<span>₹25</span>
+				<button onclick="addToCart('Sambar Idly',25)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=200&h=200&fit=crop" alt="Carrot Idly" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/1m6QjqG7kLqfBtK0SV8dZs0eHI7FHRBY3/view?usp=sharing">Carrot Idly</a>
+			<div class="item-footer">
+				<span>₹30</span>
+				<button onclick="addToCart('Carrot Idly',30)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=200&h=200&fit=crop" alt="Beetroot Idly" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/1E3QM-JIbIQwEZYTZXmH0kJqCwwHz-V8W/view?usp=sharing">Beetroot Idly</a>
+			<div class="item-footer">
+				<span>₹30</span>
+				<button onclick="addToCart('Beetroot Idly',30)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<button onclick="openSection('tiffins')">⬅ Back to Tiffins</button>
+</div>
+
+<!-- DOSA -->
+<div id="dosa" class="hidden">
+	<h2>Dosa Items</h2>
+	
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=200&h=200&fit=crop" alt="Plain Dosa" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/1adBjfqFnd0FBHi1zl8Qks7VrLvXy9WtI/view?usp=sharing">Plain Dosa</a>
+			<div class="item-footer">
+				<span>₹30</span>
+				<button onclick="addToCart('Plain Dosa',30)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1694159261863-b6f0ac447543?w=200&h=200&fit=crop" alt="Onion Dosa" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/1eeU-tal9-26tax5mB6I_U0r9XhSbKVf4/view?usp=sharing">Onion Dosa</a>
+			<div class="item-footer">
+				<span>₹35</span>
+				<button onclick="addToCart('Onion Dosa',35)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=200&h=200&fit=crop" alt="Masala Dosa" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/1iggBGu6uYLgbW3WL6mLjtYDhKm-YMczP/view?usp=sharing">Masala Dosa</a>
+			<div class="item-footer">
+				<span>₹40</span>
+				<button onclick="addToCart('Masala Dosa',40)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=200&h=200&fit=crop" alt="Ravva Dosa" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/1pLYsJPlbeCMz18UIzgya1Zey9rrEZRPj/view?usp=sharing">Ravva Dosa</a>
+			<div class="item-footer">
+				<span>₹40</span>
+				<button onclick="addToCart('Ravva Dosa',40)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=200&h=200&fit=crop" alt="Egg Dosa" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/1gZe9Lgtng78UDOhQp2136bDMQYSfrUXm/view?usp=sharing">Egg Dosa</a>
+			<div class="item-footer">
+				<span>₹45</span>
+				<button onclick="addToCart('Egg Dosa',45)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="item-card">
+		<img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=200&h=200&fit=crop" alt="Pesarattu Upma" class="item-image">
+		<div class="item-details">
+			<a href="https://drive.google.com/file/d/1LONYAVL4WoKiodHmA6IMXzRKjvyy0YAc/view?usp=sharing">Pesarattu Upma</a>
+			<div class="item-footer">
+				<span>₹45</span>
+				<button onclick="addToCart('Pesarattu Upma',45)">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+
+	<button onclick="openSection('tiffins')">⬅ Back to Tiffins</button>
+</div>
+
+<!-- Noodles -->
+<div id="noodles" class="hidden">
+<h2>Noodles</h2>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=200&h=200&fit=crop" alt="Chicken Noodles" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1xTffv_MHpm8aZDo31bCIbVNlW9aDYJ6q/view?usp=sharing">Chicken Noodles</a>
+		<div class="item-footer">
+			<span>₹90</span>
+			<button onclick="addToCart('Chicken Noodles',90)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200&h=200&fit=crop" alt="Egg Noodles" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1yxzgL6Jxjkpvczire3-ztiUB0bKl_dFv/view?usp=sharing">Egg Noodles</a>
+		<div class="item-footer">
+			<span>₹80</span>
+			<button onclick="addToCart('Egg Noodles',80)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&h=200&fit=crop" alt="Veg Noodles" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1hY1mEvzZf4tsZtLAekt7tNliYEHpwa8Z/view?usp=sharing">Veg Noodles</a>
+		<div class="item-footer">
+			<span>₹70</span>
+			<button onclick="addToCart('Veg Noodles',70)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+<!-- Fried Rice -->
+<div id="friedrice" class="hidden">
+<h2>Fried Rice</h2>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=200&h=200&fit=crop" alt="Chicken Fried Rice" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1AWnicaBJjDo9CCoAUJarh3T2ATNt-S2v/view?usp=sharing">Chicken Fried Rice</a>
+		<div class="item-footer">
+			<span>₹90</span>
+			<button onclick="addToCart('Chicken Fried Rice',90)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1645177628172-a94c30a5903b?w=200&h=200&fit=crop" alt="Egg Fried Rice" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1T7vgqt2aOFYBf9k3fBngIRiRyUSdVnvR/view?usp=sharing">Egg Fried Rice</a>
+		<div class="item-footer">
+			<span>₹80</span>
+			<button onclick="addToCart('Egg Fried Rice',80)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&h=200&fit=crop" alt="Veg Fried Rice" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1FbjowXH_AoTokU6gpqAicrznnTH1sdIQ/view?usp=sharing">Veg Fried Rice</a>
+		<div class="item-footer">
+			<span>₹70</span>
+			<button onclick="addToCart('Veg Fried Rice',70)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+
+<!-- BIRYANI -->
+<div id="biryani" class="hidden">
+<h2>Biryani</h2>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=200&h=200&fit=crop" alt="Chicken Dum Biryani" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1BDv9B8Q103Nx-m5EmjoXkfCWg67OFZ4b/view?usp=sharing">Chicken Dum Biryani</a>
+		<div class="item-footer">
+			<span>₹300</span>
+			<button onclick="addToCart('Chicken Dum Biryani',300)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?w=200&h=200&fit=crop" alt="Chicken FryPiece Biryani" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1aNKSDEBxfr1ZEOxLb0MPOFQBFnojScgZ/view?usp=sharing">Chicken FryPiece Biryani</a>
+		<div class="item-footer">
+			<span>₹300</span>
+			<button onclick="addToCart('Chicken FryPiece Biryani',300)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=200&h=200&fit=crop" alt="Mixed Biryani" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1uvahqZRtMaaqxca6gI6rCXxK5oHm4s-b/view?usp=sharing">Mixed Biryani</a>
+		<div class="item-footer">
+			<span>₹400</span>
+			<button onclick="addToCart('Mixed Biryani',400)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=200&h=200&fit=crop" alt="Mutton Biryani" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/19T3_7gMAxYrUMWt1c0WXtlFHZBOZnWAp/view?usp=sharing">Mutton Biryani</a>
+		<div class="item-footer">
+			<span>₹350</span>
+			<button onclick="addToCart('Mutton Biryani',350)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=200&h=200&fit=crop" alt="Prawns Biryani" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1GGMr5AUKRpiAI7N2544KotmJbVodfovX/view?usp=sharing">Prawns Biryani</a>
+		<div class="item-footer">
+			<span>₹320</span>
+			<button onclick="addToCart('Prawns Biryani',320)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=200&h=200&fit=crop" alt="Paneer Biryani" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1EqdxmrKIEQQlI6M6Lnkbc3lvTpNOqSY_/view?usp=sharing">Paneer Biryani</a>
+		<div class="item-footer">
+			<span>₹250</span>
+			<button onclick="addToCart('Paneer Biryani',250)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=200&h=200&fit=crop" alt="Mushroom Biryani" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1dO_Ad1_la34pS-8BvfWBmpIbRZzYWtnr/view?usp=sharing">Mushroom Biryani</a>
+		<div class="item-footer">
+			<span>₹250</span>
+			<button onclick="addToCart('Mushroom Biryani',250)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+<!-- STARTERS -->
+<div id="starters" class="hidden">
+<h2>Starters</h2>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=200&h=200&fit=crop" alt="Chicken 65" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1aPOJtYRrsGt6rfxMzzDKTYlsEqYx773d/view?usp=sharing">Chicken 65</a>
+		<div class="item-footer">
+			<span>₹220</span>
+			<button onclick="addToCart('Chicken 65',220)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=200&h=200&fit=crop" alt="Chicken Lollipop" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/17fnaZGWqSZEqqVHU2BDSATOdJe6xFboG/view?usp=sharing">Chicken Lollipop</a>
+		<div class="item-footer">
+			<span>₹230</span>
+			<button onclick="addToCart('Chicken Lollipop',230)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=200&h=200&fit=crop" alt="Chicken Tikka" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1tdTyaoSwCi3rijz8i8DH7KEqX1U1uUwJ/view?usp=sharing">Chicken Tikka</a>
+		<div class="item-footer">
+			<span>₹180</span>
+			<button onclick="addToCart('Chicken Tikka',180)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=200&h=200&fit=crop" alt="Chilli Chicken" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1CRmVmg7M-TzlX1yJdc3JgiSJDdB4CfMX/view?usp=sharing">Chilli Chicken</a>
+		<div class="item-footer">
+			<span>₹210</span>
+			<button onclick="addToCart('Chilli Chicken',210)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1626074353765-517a65aded5c?w=200&h=200&fit=crop" alt="Chicken Manchurian" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1wPF26M3SLZPm1heStC9yrTvGcIzlcG8e/view?usp=sharing">Chicken Manchurian</a>
+		<div class="item-footer">
+			<span>₹150</span>
+			<button onclick="addToCart('Chicken Manchurian',150)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1580959375944-f6b930d3a5e7?w=200&h=200&fit=crop" alt="Fish Fry" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1Zpax5PIjO7P5vqKQ99GXImPr4HFO3qjm/view?usp=sharing">Fish Fry</a>
+		<div class="item-footer">
+			<span>₹250</span>
+			<button onclick="addToCart('Fish Fry',250)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=200&h=200&fit=crop" alt="Prawns Fry" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1lX6-sy8I6MEhX7fCsRKXqu2VWy8YiD7g/view?usp=sharing">Prawns Fry</a>
+		<div class="item-footer">
+			<span>₹250</span>
+			<button onclick="addToCart('Prawns Fry',250)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+<!-- ADDS -->
+<div id="adds" class="hidden">
+<h2>ADDs</h2>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=200&h=200&fit=crop" alt="White Chutney" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1b6Qrw8UKdBxkiznMdXCMCRuZLsJX39r2/view?usp=sharing">White Chutney</a>
+		<div class="item-footer">
+			<span>₹10</span>
+			<button onclick="addToCart('White Chutney',10)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=200&h=200&fit=crop" alt="Red Chutney" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1f8jIwcJSSG9RE3fi5WTKm8cIuyIcT1sX/view?usp=sharing">Red Chutney</a>
+		<div class="item-footer">
+			<span>₹10</span>
+			<button onclick="addToCart('Red Chutney',10)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=200&h=200&fit=crop" alt="Green Chutney" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1BpcOXKPm8Ip9_5TmU9k1rkgzbOJoTDIj/view?usp=sharing">Green Chutney</a>
+		<div class="item-footer">
+			<span>₹10</span>
+			<button onclick="addToCart('Green Chutney',10)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=200&h=200&fit=crop" alt="Bombai Chutney" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/19sAaMlzPsc131tk4Q6zET_H1HDZC4yLH/view?usp=sharing">Bombai Chutney</a>
+		<div class="item-footer">
+			<span>₹10</span>
+			<button onclick="addToCart('Bombai Chutney',10)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200&h=200&fit=crop" alt="Potato Curry" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/13-6lrx-QaJW8CmY0F7SP1O3_XESLRWUY/view?usp=sharing">Potato Curry</a>
+		<div class="item-footer">
+			<span>₹20</span>
+			<button onclick="addToCart('Potato Curry',20)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200&h=200&fit=crop" alt="Puri Curry" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1KHC_-6BQBh8BLjs2GmlZdrlObpNO_Sy3/view?usp=sharing">Puri Curry</a>
+		<div class="item-footer">
+			<span>₹20</span>
+			<button onclick="addToCart('Puri Curry',20)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200&h=200&fit=crop" alt="Veg Sherva" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1LlvvfFcEn4Q_rRC8yUGwmiY6hU4bI1-Z/view?usp=sharing">Veg Sherva</a>
+		<div class="item-footer">
+			<span>₹20</span>
+			<button onclick="addToCart('Veg Sherva',20)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<div class="item-card">
+	<img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=200&h=200&fit=crop" alt="Non-Veg Sherva (Chicken)" class="item-image">
+	<div class="item-details">
+		<a href="https://drive.google.com/file/d/1NiQcziS42vLD4_pj9PKse-qIeq6P6zBB/view?usp=sharing">Non-Veg Sherva (Chicken)</a>
+		<div class="item-footer">
+			<span>₹30</span>
+			<button onclick="addToCart('Non-Veg Sherva (Chicken)',30)">Add to Cart</button>
+		</div>
+	</div>
+</div>
+
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+<!-- CART -->
+<div id="cartPage" class="hidden">
+<h2>Your Cart</h2>
+<div id="cartItems"></div>
+<h3 id="total"></h3>
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+</div>
+
+<button class="cart-btn" onclick="openCart()">🛒 Cart</button>
+
+<script>
+let cart = [];
+let total = 0;
+
+function openSection(id) {
+    document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
+
+function goBack() {
+    document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
+    document.getElementById('categories').style.display = 'block';
+}
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    total += price;
+    alert(name + " added to cart");
+}
+function openCart() {
+    document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
+    document.getElementById('cartPage').style.display = 'block';
+
+    renderCart();
+}
+function renderCart() {
+    let html = "";
+    total = 0;
+
+    cart.forEach((item, index) => {
+        total += item.price;
+        html += `
+        <div class="cart-item">
+            <span>${item.name} - ₹${item.price}</span>
+            <button onclick="removeFromCart(${index})">❌</button>
+        </div>
+        `;
+    });
+
+    document.getElementById("cartItems").innerHTML = html || "<p>No items in cart</p>";
+    document.getElementById("total").innerText = "Total Amount: ₹" + total;
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    renderCart();
+}
+</script>
+
+</body>
+
+</html>
