@@ -1,583 +1,1307 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Manam Restaurant</title>
+	<meta charset="UTF-8">
+	<title>Manam Restaurant</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eef7f3;
-    color: #222;
-}
-header {
-    text-align: center;
-    padding: 30px 20px;
-    background: #1f6f5b;
-    color: white;
-}
-header h1 {
-    margin: 0;
-    font-size: 42px;
-}
-.container { padding: 20px; }
-.hidden { display: none; }
+	<style>
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			background: #eef7f3;
+			color: #222;
+		}
 
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-	gap: 15px;
-}
+		header {
+			text-align: center;
+			padding: 30px 20px;
+			background: #1f6f5b;
+			color: white;
+		}
 
-.category {
-    background: white;
-    padding: 25px;
-	margin-bottom: 15px;
-    margin-left: 300px;
-    margin-right: 300px;
-    text-align: center;
-    border-radius: 12px;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.category:hover {
-    transform: scale(1.05);
-    background: #dff2ea;
-}
+		header h1 {
+			margin: 0;
+			font-size: 42px;
+		}
 
-.item-card {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-.item-card a {
-    text-decoration: none;
-    color: #1f6f5b;
-    font-weight: bold;
-}
-.item-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-button {
-    background: #1f6f5b;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.cart-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ff7043;
-    padding: 14px 20px;
-}
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-}
-.cart-item button {
-    background: #ffffff;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 14px;
-}
-</style>
+		.container {
+			padding: 20px;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		.category-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+			gap: 15px;
+		}
+
+		.category {
+			background: white;
+			padding: 25px;
+			margin-bottom: 15px;
+			margin-left: 300px;
+			margin-right: 300px;
+			text-align: center;
+			border-radius: 12px;
+			font-size: 20px;
+			cursor: pointer;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.category:hover {
+			transform: scale(1.05);
+			background: #dff2ea;
+		}
+
+		.item-card {
+			background: white;
+			padding: 15px;
+			border-radius: 10px;
+			margin-bottom: 15px;
+			margin-top: 10px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+		}
+
+		.item-card a {
+			text-decoration: none;
+			color: #1f6f5b;
+			font-weight: bold;
+		}
+
+		.item-footer {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 10px;
+		}
+
+		/* General button reset */
+		button {
+			background: #e05500;
+			color: white;
+			border: none;
+			padding: 8px 14px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		/* Plate counter controls on item cards */
+		.plate-control {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.plate-control button {
+			background: #4c9e62;
+			color: white;
+			border: none;
+			width: 35px;
+			height: 35px;
+			border-radius: 5px;
+			font-size: 18px;
+			line-height: 1;
+			cursor: pointer;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.plate-control button:hover {
+			background: #e05500;
+		}
+
+		.plate-count {
+			min-width: 28px;
+			text-align: center;
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		.add-cart-btn {
+			background: #fc6602;
+			color: white;
+			border: none;
+			padding: 7px 13px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 14px;
+		}
+
+		.add-cart-btn:hover {
+			background: #e05500;
+		}
+
+		.cart-btn {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			background: #ff7043;
+			padding: 14px 20px;
+		}
+
+		/* Cart page items */
+		.cart-item {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 8px 0;
+			border-bottom: 1px solid #eee;
+		}
+
+		.cart-item-qty {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.cart-item-qty button {
+			background: #fc6602;
+			color: white;
+			border: none;
+			width: 26px;
+			height: 26px;
+			border-radius: 5px;
+			font-size: 16px;
+			line-height: 1;
+			cursor: pointer;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.cart-item-qty button:hover {
+			background: #e05500;
+		}
+
+		.cart-item button.remove-btn {
+			background: #ffffff;
+			border: 1px solid #ccc;
+			padding: 4px 10px;
+			border-radius: 6px;
+			font-size: 14px;
+			color: #333;
+		}
+	</style>
 </head>
 
 <body>
 
-<header>
-<h1>Manam Restaurant</h1>
-</header>
+	<header>
+		<h1>Manam Restaurant</h1>
+	</header>
 
-<div class="container">
+	<div class="container">
 
-<!-- MAIN CATEGORIES -->
-<div id="categories">
-<h2>Menu Categories</h2>
-<div class="category-list">
-    <div class="category" onclick="openSection('tiffins')">Tiffins</div>
-    <div class="category" onclick="openSection('noodles')">Noodles</div>
-    <div class="category" onclick="openSection('firedrice')">Fried Rice</div>
-    <div class="category" onclick="openSection('biryani')">Biryani</div>
-    <div class="category" onclick="openSection('starters')">Starters</div>
-    <div class="category" onclick="openSection('adds')">ADDs</div>
-</div>
-</div>
+		<!-- MAIN CATEGORIES -->
+		<div id="categories">
+			<h2>Menu Categories</h2>
+			<div class="category-list">
+				<div class="category" onclick="openSection('tiffins')">Tiffins</div>
+				<div class="category" onclick="openSection('noodles')">Noodles</div>
+				<div class="category" onclick="openSection('firedrice')">Fried Rice</div>
+				<div class="category" onclick="openSection('biryani')">Biryani</div>
+				<div class="category" onclick="openSection('starters')">Starters</div>
+				<div class="category" onclick="openSection('adds')">ADDs</div>
+			</div>
+		</div>
 
-<!-- TIFFINS MAIN -->
-<div id="tiffins" class="hidden">
-<h2>Tiffins</h2>
+		<!-- TIFFINS MAIN -->
+		<div id="tiffins" class="hidden">
+			<h2>Tiffins</h2>
 
-<!-- Upma shown directly -->
-<div class="item-card">
-    <a href="https://drive.google.com/file/d/1nr7rbV9wgZH63klUFxpqHTLVeEIs5db1/view?usp=sharing" >Upma</a>
-    <div class="item-footer">
-        <span>₹20</span>
-        <button onclick="addToCart('Upma',20)">Add</button>
-    </div>
-</div>
+			<!-- Upma shown directly -->
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/upma.webp" alt="Upma"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1nr7rbV9wgZH63klUFxpqHTLVeEIs5db1/view?usp=sharing"
+							style="font-size: 18px;">Upma</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Upma',20)">Add</button>
+					</div>
+				</div>
+			</div>
 
-<!-- Sub-categories -->
-<div class="category-grid">
-    <div class="category" onclick="openSection('idly')">Idly</div>
-    <div class="category" onclick="openSection('dosa')">Dosa</div>
-</div>
+			<!-- Sub-categories -->
+			<div class="category-grid">
+				<div class="category"
+					style="background-image: url('images/idly.jpg'); background-size: cover; background-position: center; color: white; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.8);"
+					onclick="openSection('idly')">Idly</div>
+				<div class="category"
+					style="background-image: url('images/dosa.webp'); background-size: cover; background-position: center; color: white; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.8);"
+					onclick="openSection('dosa')">Dosa</div>
+			</div>
 
-<!-- Mysore Bajji -->
-<div class="item-card">
-    <a href="https://drive.google.com/file/d/1_c38k7UEZhVgC01uGNinANPZa2AeaK5t/view?usp=sharing">Mysore Bajji</a>
-    <div class="item-footer">
-        <span>₹25</span>
-        <button onclick="addToCart('Mysore Bajji',25)">Add</button>
-    </div>
-</div>
+			<!-- Mysore Bajji -->
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/mysore_bajji.jpg" alt="Mysore Bajji"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1_c38k7UEZhVgC01uGNinANPZa2AeaK5t/view?usp=sharing"
+							style="font-size: 18px;">Mysore
+							Bajji</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹25</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Mysore Bajji',25)">Add</button>
+					</div>
+				</div>
+			</div>
 
-<!-- Punugulu -->
-<div class="item-card">
-    <a href="https://drive.google.com/file/d/1AL8Z_fGJTqPW5j6t50SxwUdJa_MRb_SV/view?usp=sharing">Punugulu</a>
-    <div class="item-footer">
-        <span>₹25</span>
-        <button onclick="addToCart('Punugulu',25)">Add</button>
-    </div>
-</div>
+			<!-- Punugulu -->
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/Punugulu.JPG" alt="Punugulu"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1AL8Z_fGJTqPW5j6t50SxwUdJa_MRb_SV/view?usp=sharing"
+							style="font-size: 18px;">Punugulu</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹25</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Punugulu',25)">Add</button>
+					</div>
+				</div>
+			</div>
 
-<!-- vada -->
-<div class="item-card">
-    <a href="https://drive.google.com/file/d/1RpE8_cC3t3Kjz1rvCEO7gj8cOYJm_mDg/view?usp=sharing">Vada</a>
-    <div class="item-footer">
-        <span>₹30</span>
-        <button onclick="addToCart('Vada',30)">Add</button>
-    </div>
-</div>
+			<!-- Vada -->
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/vada.jpg" alt="Vada"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1RpE8_cC3t3Kjz1rvCEO7gj8cOYJm_mDg/view?usp=sharing"
+							style="font-size: 18px;">Vada</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Vada',30)">Add</button>
+					</div>
+				</div>
+			</div>
 
-<!-- Puri -->
-<div class="item-card">
-    <a href="https://drive.google.com/file/d/161FrWuM5ZaT4Dk_rFrRPiiUb8WFa41Lz/view?usp=sharing">Puri</a>
-    <div class="item-footer">
-        <span>₹30</span>
-        <button onclick="addToCart('puri',30)">Add</button>
-    </div>
-</div>
+			<!-- Puri -->
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/puri.webp" alt="Puri"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/161FrWuM5ZaT4Dk_rFrRPiiUb8WFa41Lz/view?usp=sharing"
+							style="font-size: 18px;">Puri</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Puri',30)">Add</button>
+					</div>
+				</div>
+			</div>
 
-<!-- Chapathi -->
-<div class="item-card">
-    <a href="https://drive.google.com/file/d/1NJ2tCnn3smJNySByIS0cTzOo12prGYrs/view?usp=sharing">Chapathi</a>
-    <div class="item-footer">
-        <span>₹35</span>
-        <button onclick="addToCart('Chapathi',35)">Add</button>
-    </div>
-</div>
+			<!-- Chapathi -->
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/Chapathi_.jpeg" alt="Chapathi"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1NJ2tCnn3smJNySByIS0cTzOo12prGYrs/view?usp=sharing"
+							style="font-size: 18px;">Chapathi</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹35</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chapathi',35)">Add</button>
+					</div>
+				</div>
+			</div>
 
-<!-- parotta -->
-<div class="item-card">
-    <a href="https://drive.google.com/file/d/14wf6yhT09Ncf6zokXPagFQStzG7-igNw/view?usp=sharing">Parotta</a>
-    <div class="item-footer">
-        <span>₹35</span>
-        <button onclick="addToCart('Parotta',35)">Add</button>
-    </div>
-</div>
+			<!-- Parotta -->
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/parotta.avif" alt="Parotta"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/14wf6yhT09Ncf6zokXPagFQStzG7-igNw/view?usp=sharing"
+							style="font-size: 18px;">Parotta</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹35</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Parotta',35)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<button onclick="goBack()">⬅ Back</button>
+		</div>
+
+		<!-- IDLY -->
+		<div id="idly" class="hidden">
+			<h2>Idly Items</h2>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/idly.jpg" alt="Idly"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/18tehxt-ZcyYD2rrYVVOqJgcqlGReUxvr/view?usp=sharing"
+							style="font-size: 18px;">Idly</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Idly',20)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/sambar idly.jpg" alt="Sambar Idly"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1dy3W1CW4N10TNBFMdS7oJwNSGi_RdTDP/view?usp=sharing"
+							style="font-size: 18px;">Sambar Idly</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹25</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Sambar Idly',25)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/carrot idly.jpg" alt="Carrot Idly"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1m6QjqG7kLqfBtK0SV8dZs0eHI7FHRBY3/view?usp=sharing"
+							style="font-size: 18px;">Carrot Idly</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Carrot Idly',30)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/beetroot idly.jpg" alt="Beetroot Idly"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1E3QM-JIbIQwEZYTZXmH0kJqCwwHz-V8W/view?usp=sharing"
+							style="font-size: 18px;">Beetroot Idly</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Beetroot Idly',30)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<button onclick="openSection('tiffins')">⬅ Back to Tiffins</button>
+		</div>
+
+		<!-- DOSA -->
+		<div id="dosa" class="hidden">
+			<h2>Dosa Items</h2>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/plain dosa.avif" alt="Plain Dosa"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1adBjfqFnd0FBHi1zl8Qks7VrLvXy9WtI/view?usp=sharing"
+							style="font-size: 18px;">Plain Dosa</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Plain Dosa',30)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/onion dosa.jpg" alt="Onion Dosa"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1eeU-tal9-26tax5mB6I_U0r9XhSbKVf4/view?usp=sharing"
+							style="font-size: 18px;">Onion Dosa</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹35</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Onion Dosa',35)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/masala dosa.jpg" alt="Masala Dosa"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1iggBGu6uYLgbW3WL6mLjtYDhKm-YMczP/view?usp=sharing"
+							style="font-size: 18px;">Masala Dosa</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹40</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Masala Dosa',40)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/ravva dosa.jpg" alt="Ravva Dosa"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1pLYsJPlbeCMz18UIzgya1Zey9rrEZRPj/view?usp=sharing"
+							style="font-size: 18px;">Ravva Dosa</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹40</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Ravva Dosa',40)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/egg dosa.jpg" alt="Egg Dosa"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1gZe9Lgtng78UDOhQp2136bDMQYSfrUXm/view?usp=sharing"
+							style="font-size: 18px;">Egg Dosa</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹45</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Egg Dosa',45)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/Pesarattu Upma.jpg" alt="Pesarattu Upma"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1LONYAVL4WoKiodHmA6IMXzRKjvyy0YAc/view?usp=sharing"
+							style="font-size: 18px;">Pesarattu Upma</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹45</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Pesarattu Upma',45)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<button onclick="openSection('tiffins')">⬅ Back to Tiffins</button>
+		</div>
+
+		<!-- Noodles -->
+		<div id="noodles" class="hidden">
+			<h2>Noodles</h2>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/chicken noodles.jpg" alt="Chicken Noodles"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1xTffv_MHpm8aZDo31bCIbVNlW9aDYJ6q/view?usp=sharing"
+							style="font-size: 18px;">Chicken Noodles</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹90</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chicken Noodles',90)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/egg nodels.jpg" alt="Egg Noodles"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1yxzgL6Jxjkpvczire3-ztiUB0bKl_dFv/view?usp=sharing"
+							style="font-size: 18px;">Egg Noodles</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹80</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Egg Noodles',80)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/veg noodles.jpg" alt="Veg Noodles"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1hY1mEvzZf4tsZtLAekt7tNliYEHpwa8Z/view?usp=sharing"
+							style="font-size: 18px;">Veg Noodles</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹70</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Veg Noodles',70)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<button onclick="goBack()">⬅ Back</button>
+		</div>
+
+		<!-- FRIED RICE -->
+		<div id="firedrice" class="hidden">
+			<h2>Fried Rice</h2>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/chicken fried rice.jpg" alt="Chicken Fried Rice"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1AWnicaBJjDo9CCoAUJarh3T2ATNt-S2v/view?usp=sharing"
+							style="font-size: 18px;">Chicken Fried Rice</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹90</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chicken Fried Rice',90)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/Egg Fried Rice.jpg" alt="Egg Fried Rice"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1T7vgqt2aOFYBf9k3fBngIRiRyUSdVnvR/view?usp=sharing"
+							style="font-size: 18px;">Egg Fried Rice</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹80</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Egg Fried Rice',80)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/veg fried rice.jpg" alt="Veg Fried Rice"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1FbjowXH_AoTokU6gpqAicrznnTH1sdIQ/view?usp=sharing"
+							style="font-size: 18px;">Veg Fried Rice</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹70</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Veg Fried Rice',70)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<button onclick="goBack()">⬅ Back</button>
+		</div>
 
 
-<button onclick="goBack()">⬅ Back</button>
-</div>
+		<!-- BIRYANI -->
+		<div id="biryani" class="hidden">
+			<h2>Biryani</h2>
 
-<!-- IDLY -->
-<div id="idly" class="hidden">
-	<h2>Idly Items</h2>
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/chicken dum biryani.jpg" alt="Chicken Dum Biryani"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1BDv9B8Q103Nx-m5EmjoXkfCWg67OFZ4b/view?usp=sharing"
+							style="font-size: 18px;">Chicken Dum Biryani</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹300</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chicken Dum Biryani',300)">Add</button>
+					</div>
+				</div>
+			</div>
 
-	<div class="item-card">
-		<a href="https://drive.google.com/file/d/18tehxt-ZcyYD2rrYVVOqJgcqlGReUxvr/view?usp=sharing">Idly</a>
-		<div class="item-footer"><span>₹20</span><button onclick="addToCart('Idly',20)">Add</button></div>
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/chicken fry piece biryani.jpg" alt="Chicken Fry Piece Biryani"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1aNKSDEBxfr1ZEOxLb0MPOFQBFnojScgZ/view?usp=sharing"
+							style="font-size: 18px;">Chicken FryPiece Biryani</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹300</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chicken FryPiece Biryani',300)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/mixed biryani.jpg" alt="Mixed Biryani"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1uvahqZRtMaaqxca6gI6rCXxK5oHm4s-b/view?usp=sharing"
+							style="font-size: 18px;">Mixed Biryani</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹400</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Mixed Biryani',400)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/mutton biryani.jpg" alt="Mutton Biryani"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/19T3_7gMAxYrUMWt1c0WXtlFHZBOZnWAp/view?usp=sharing"
+							style="font-size: 18px;">Mutton Biryani</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹350</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Mutton Biryani',350)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/prawns biryani.jpg" alt="Prawns Biryani"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1GGMr5AUKRpiAI7N2544KotmJbVodfovX/view?usp=sharing"
+							style="font-size: 18px;">Prawns Biryani</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹320</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Prawns Biryani',320)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/paneer biryani.jpg" alt="Paneer Biryani"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1EqdxmrKIEQQlI6M6Lnkbc3lvTpNOqSY_/view?usp=sharing"
+							style="font-size: 18px;">Paneer Biryani</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹250</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Paneer Biryani',250)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/mushroom biryani.webp" alt="Mushroom Biryani"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1dO_Ad1_la34pS-8BvfWBmpIbRZzYWtnr/view?usp=sharing"
+							style="font-size: 18px;">Mushroom Biryani</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹250</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Mushroom Biryani',250)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<button onclick="goBack()">⬅ Back</button>
+		</div>
+
+		<!-- STARTERS -->
+		<div id="starters" class="hidden">
+			<h2>Starters</h2>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/chicken 65.jpg" alt="Chicken 65"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1aPOJtYRrsGt6rfxMzzDKTYlsEqYx773d/view?usp=sharing"
+							style="font-size: 18px;">Chicken 65</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹220</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chicken 65',220)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/chicken lollipop.jpg" alt="Chicken Lollipop"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/17fnaZGWqSZEqqVHU2BDSATOdJe6xFboG/view?usp=sharing"
+							style="font-size: 18px;">Chicken Lollipop</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹230</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chicken Lollipop',230)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/chicken tikka.jpg" alt="Chicken Tikka"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1tdTyaoSwCi3rijz8i8DH7KEqX1U1uUwJ/view?usp=sharing"
+							style="font-size: 18px;">Chicken Tikka</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹180</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chicken Tikka',180)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/chilli chicken.jpeg" alt="Chilli Chicken"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1CRmVmg7M-TzlX1yJdc3JgiSJDdB4CfMX/view?usp=sharing"
+							style="font-size: 18px;">Chilli Chicken</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹210</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chilli Chicken',210)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/chicken manchurian.jpg" alt="Chicken Manchurian"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1wPF26M3SLZPm1heStC9yrTvGcIzlcG8e/view?usp=sharing"
+							style="font-size: 18px;">Chicken Manchurian</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹150</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Chicken Manchurian',150)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/fish fry.jpg" alt="Fish Fry"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1Zpax5PIjO7P5vqKQ99GXImPr4HFO3qjm/view?usp=sharing"
+							style="font-size: 18px;">Fish Fry</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹250</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Fish Fry',250)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/prawns fry.jpg" alt="Prawns Fry"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1lX6-sy8I6MEhX7fCsRKXqu2VWy8YiD7g/view?usp=sharing"
+							style="font-size: 18px;">Prawns Fry</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹250</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Prawns Fry',250)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<button onclick="goBack()">⬅ Back</button>
+		</div>
+
+		<!-- ADDS -->
+		<div id="adds" class="hidden">
+			<h2>ADDs</h2>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/white chutney.jpg" alt="White Chutney"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1b6Qrw8UKdBxkiznMdXCMCRuZLsJX39r2/view?usp=sharing"
+							style="font-size: 18px;">White Chutney</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹10</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'White Chutney',10)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/red chutney.jpg" alt="Red Chutney"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1f8jIwcJSSG9RE3fi5WTKm8cIuyIcT1sX/view?usp=sharing"
+							style="font-size: 18px;">Red Chutney</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹10</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Red Chutney',10)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/green chutney.webp" alt="Green Chutney"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1BpcOXKPm8Ip9_5TmU9k1rkgzbOJoTDIj/view?usp=sharing"
+							style="font-size: 18px;">Green Chutney</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹10</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Green Chutney',10)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/Bombay Chutney.jpg" alt="Bombai Chutney"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/19sAaMlzPsc131tk4Q6zET_H1HDZC4yLH/view?usp=sharing"
+							style="font-size: 18px;">Bombai Chutney</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹10</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Bombai Chutney',10)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/potato curry.jpg" alt="Potato Curry"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/13-6lrx-QaJW8CmY0F7SP1O3_XESLRWUY/view?usp=sharing"
+							style="font-size: 18px;">Potato Curry</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Potato Curry',20)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/puri curry.jpg" alt="Puri Curry"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1KHC_-6BQBh8BLjs2GmlZdrlObpNO_Sy3/view?usp=sharing"
+							style="font-size: 18px;">Puri Curry</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Puri Curry',20)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/veg sherva.jpg" alt="Veg Sherva"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1LlvvfFcEn4Q_rRC8yUGwmiY6hU4bI1-Z/view?usp=sharing"
+							style="font-size: 18px;">Veg Sherva</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Veg Sherva',20)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="item-card">
+				<div style="display: flex; gap: 15px;">
+					<img src="images/non veg sherva.jpg" alt="Non-Veg Sherva (Chicken)"
+						style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+					<div style="display: flex; flex-direction: column; justify-content: center; gap: 5px;">
+						<a href="https://drive.google.com/file/d/1NiQcziS42vLD4_pj9PKse-qIeq6P6zBB/view?usp=sharing"
+							style="font-size: 18px;">Non-Veg Sherva (Chicken)</a>
+						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
+					</div>
+				</div>
+				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
+					<div class="plate-control">
+						<button onclick="changeCount(this,-1)">−</button>
+						<span class="plate-count">0</span>
+						<button onclick="changeCount(this,1)">+</button>
+						<button class="add-cart-btn" onclick="add(this,'Non-Veg Sherva (Chicken)',30)">Add</button>
+					</div>
+				</div>
+			</div>
+
+			<button onclick="goBack()">⬅ Back</button>
+		</div>
+
+		<!-- CART PAGE -->
+		<div id="cartPage" class="hidden">
+			<h2>Your Cart</h2>
+			<div id="cartItems"></div>
+			<h3 id="cartTotal"></h3>
+			<button onclick="goBack()">⬅ Back</button>
+		</div>
+
 	</div>
 
-	<div class="item-card">
-		<a href="https://drive.google.com/file/d/1dy3W1CW4N10TNBFMdS7oJwNSGi_RdTDP/view?usp=sharing">Sambar Idly</a>
-		<div class="item-footer"><span>₹25</span><button onclick="addToCart('Sambar Idly',25)">Add</button></div>
-	</div>
+	<button class="cart-btn" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
 
-	<div class="item-card">
-		<a href=" https://drive.google.com/file/d/1m6QjqG7kLqfBtK0SV8dZs0eHI7FHRBY3/view?usp=sharing">Carrot Idly</a>
-		<div class="item-footer"><span>₹30</span><button onclick="addToCart('Carrot Idly',30)">Add</button></div>
-	</div>
+	<script>
+		// cart = { name: { price, qty } }
+		let cart = {};
 
-	<div class="item-card">
-		<a href="https://drive.google.com/file/d/1E3QM-JIbIQwEZYTZXmH0kJqCwwHz-V8W/view?usp=sharing">Beetroot Idly</a>
-		<div class="item-footer"><span>₹30</span><button onclick="addToCart('Beetroot Idly',30)">Add</button></div>
-	</div>
+		/* -------- Plate counter on item cards -------- */
+		function changeCount(btn, delta) {
+			const control = btn.parentElement;
+			const countSpan = control.querySelector('.plate-count');
+			let count = parseInt(countSpan.textContent) + delta;
+			if (count < 0) count = 0;
+			countSpan.textContent = count;
+		}
 
-	<button onclick="openSection('tiffins')">⬅ Back to Tiffins</button>
-</div>
+		/* -------- Add from card -------- */
+		function add(btn, name, price) {
+			const control = btn.parentElement;
+			const countSpan = control.querySelector('.plate-count');
+			let qty = parseInt(countSpan.textContent);
+			if (qty === 0) {
+				alert("Please select at least 1 plate using the + button.");
+				return;
+			}
 
-<!-- DOSA -->
-<div id="dosa" class="hidden">
-	<h2>Dosa Items</h2>
-	<div class="item-card">
-		<a href="https://drive.google.com/file/d/1adBjfqFnd0FBHi1zl8Qks7VrLvXy9WtI/view?usp=sharing">Plain Dosa</a>
-		<div class="item-footer"><span>₹30</span><button onclick="addToCart('Plain Dosa',30)">Add</button></div>
-	</div>
+			if (cart[name]) {
+				cart[name].qty += qty;
+			} else {
+				cart[name] = { price, qty };
+			}
 
-	<div class="item-card">
-		<a href="https://drive.google.com/file/d/1eeU-tal9-26tax5mB6I_U0r9XhSbKVf4/view?usp=sharing">Onion Dosa</a>
-		<div class="item-footer"><span>₹35</span><button onclick="addToCart('Onion Dosa',35)">Add</button></div>
-	</div>
+			// Reset counter on card
+			countSpan.textContent = '0';
+			updateCartCount();
+			alert(qty + " plate(s) of " + name + " added to cart!");
+		}
 
-	<div class="item-card">
-		<a href="https://drive.google.com/file/d/1iggBGu6uYLgbW3WL6mLjtYDhKm-YMczP/view?usp=sharing">Masala Dosa</a>
-		<div class="item-footer"><span>₹40</span><button onclick="addToCart('Masala Dosa',40)">Add</button></div>
-	</div>
+		/* -------- Update cart badge -------- */
+		function updateCartCount() {
+			let total = 0;
+			for (let key in cart) total += cart[key].qty;
+			document.getElementById('cartCount').textContent = total;
+		}
 
-	<div class="item-card">
-		<a href="https://drive.google.com/file/d/1pLYsJPlbeCMz18UIzgya1Zey9rrEZRPj/view?usp=sharing">Ravva Dosa</a>
-		<div class="item-footer"><span>₹40</span><button onclick="addToCart('Ravva Dosa',40)">Add</button></div>
-	</div>
+		/* -------- Navigation -------- */
+		function openSection(id) {
+			document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
+			document.getElementById(id).style.display = 'block';
+		}
 
-	<div class="item-card">
-		<a href="https://drive.google.com/file/d/1gZe9Lgtng78UDOhQp2136bDMQYSfrUXm/view?usp=sharing">Egg Dosa</a>
-		<div class="item-footer"><span>₹45</span><button onclick="addToCart('Egg Dosa',45)">Add</button></div>
-	</div>
+		function goBack() {
+			document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
+			document.getElementById('categories').style.display = 'block';
+		}
 
-	<div class="item-card">
-		<a href=""https://drive.google.com/file/d/1LONYAVL4WoKiodHmA6IMXzRKjvyy0YAc/view?usp=sharing">Pesarattu Upma</a>
-		<div class="item-footer"><span>₹45</span><button onclick="addToCart('Pesarattu Upma',45)">Add</button></div>
-	</div>
+		/* -------- Cart page -------- */
+		function openCart() {
+			document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
+			document.getElementById('cartPage').style.display = 'block';
+			renderCart();
+		}
 
-	<button onclick="openSection('tiffins')">⬅ Back to Tiffins</button>
-</div>
+		function renderCart() {
+			let html = "";
+			let grandTotal = 0;
 
-<!-- Noodles -->
-<div id="noodles" class="hidden">
-<h2>Noodles</h2>
+			for (let name in cart) {
+				const item = cart[name];
+				const subtotal = item.price * item.qty;
+				grandTotal += subtotal;
+				html += `
+				<div class="cart-item">
+					<span><strong>${name}</strong> — ₹${item.price} × </span>
+					<div class="cart-item-qty">
+						<button onclick="cartChangeQty('${name}', -1)">−</button>
+						<span>${item.qty}</span>
+						<button onclick="cartChangeQty('${name}', 1)">+</button>
+					</div>
+					<span>₹${subtotal}</span>
+					<button class="remove-btn" onclick="removeFromCart('${name}')">❌ Remove</button>
+				</div>`;
+			}
 
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1xTffv_MHpm8aZDo31bCIbVNlW9aDYJ6q/view?usp=sharing">Chicken Noodles</a>
-	<div class="item-footer">
-		<span>₹90</span>
-		<button onclick="addToCart('Chicken Noodles',90)">Add</button>
-	</div>
-</div>
+			document.getElementById("cartItems").innerHTML = html || "<p>No items in cart</p>";
+			document.getElementById("cartTotal").innerText =
+				grandTotal > 0 ? "Total Amount: ₹" + grandTotal : "";
+		}
 
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1yxzgL6Jxjkpvczire3-ztiUB0bKl_dFv/view?usp=sharing">Egg Noodles</a>
-	<div class="item-footer">
-		<span>₹80</span>
-		<button onclick="addToCart('Egg Noodles',80)">Add</button>
-	</div>
-</div>
+		function cartChangeQty(name, delta) {
+			if (!cart[name]) return;
+			cart[name].qty += delta;
+			if (cart[name].qty <= 0) {
+				delete cart[name];
+			}
+			updateCartCount();
+			renderCart();
+		}
 
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1hY1mEvzZf4tsZtLAekt7tNliYEHpwa8Z/view?usp=sharing">Veg Noodles</a>
-	<div class="item-footer">
-		<span>₹70</span>
-		<button onclick="addToCart('Veg Noodles',70)">Add</button>
-	</div>
-</div>
-
-<button onclick="goBack()">⬅ Back</button>
-</div>
-
-<!-- fired rice -->
-<div id="firedrice" class="hidden">
-<h2>Fired Rice</h2>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1AWnicaBJjDo9CCoAUJarh3T2ATNt-S2v/view?usp=sharing">Chicken Fired Rice</a>
-	<div class="item-footer">
-		<span>₹90</span>
-		<button onclick="addToCart('Chicken Fired Rice',90)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1T7vgqt2aOFYBf9k3fBngIRiRyUSdVnvR/view?usp=sharing">Egg Fired Rice</a>
-	<div class="item-footer">
-		<span>₹80</span>
-		<button onclick="addToCart('Egg Fired Rice',80)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1FbjowXH_AoTokU6gpqAicrznnTH1sdIQ/view?usp=sharing">Veg Fired Rice</a>
-	<div class="item-footer">
-		<span>₹70</span>
-		<button onclick="addToCart('Veg Fired Rice',70)">Add</button>
-	</div>
-</div>
-
-<button onclick="goBack()">⬅ Back</button>
-</div>
-
-
-<!-- BIRYANI -->
-<div id="biryani" class="hidden">
-<h2>Biryani</h2>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1BDv9B8Q103Nx-m5EmjoXkfCWg67OFZ4b/view?usp=sharing">Chicken Dum Biryani</a>
-	<div class="item-footer">
-		<span>₹300</span>
-		<button onclick="addToCart('Chicken Dum Biryani',300)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href=""https://drive.google.com/file/d/1aNKSDEBxfr1ZEOxLb0MPOFQBFnojScgZ/view?usp=sharing">Chicken FryPiece Biryani</a>
-	<div class="item-footer">
-		<span>₹300</span>
-		<button onclick="addToCart('Chicken FryPiece Biryani',300)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1uvahqZRtMaaqxca6gI6rCXxK5oHm4s-b/view?usp=sharing">Mixed Biryani</a>
-	<div class="item-footer">
-		<span>₹400</span>
-		<button onclick="addToCart('Mixed Biryani',400)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/19T3_7gMAxYrUMWt1c0WXtlFHZBOZnWAp/view?usp=sharing">Mutton Biryani</a>
-	<div class="item-footer">
-		<span>₹350</span>
-		<button onclick="addToCart('Mutton Biryani',350)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1GGMr5AUKRpiAI7N2544KotmJbVodfovX/view?usp=sharing">Prawns Biryani</a>
-	<div class="item-footer">
-		<span>₹320</span>
-		<button onclick="addToCart('Prawns Biryani',320)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1EqdxmrKIEQQlI6M6Lnkbc3lvTpNOqSY_/view?usp=sharing">Paneer Biryani</a>
-	<div class="item-footer">
-		<span>₹250</span>
-		<button onclick="addToCart('Paneer Biryani',250)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1dO_Ad1_la34pS-8BvfWBmpIbRZzYWtnr/view?usp=sharing">Mushroom Biryani</a>
-	<div class="item-footer">
-		<span>₹250</span>
-		<button onclick="addToCart('Mushroom Biryani',250)">Add</button>
-	</div>
-</div>
-
-<button onclick="goBack()">⬅ Back</button>
-</div>
-
-<!-- STARTERS -->
-<div id="starters" class="hidden">
-<h2>Starters</h2>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1aPOJtYRrsGt6rfxMzzDKTYlsEqYx773d/view?usp=sharing">Chicken 65</a>
-	<div class="item-footer">
-		<span>₹220</span>
-		<button onclick="addToCart('Chicken 65',220)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/17fnaZGWqSZEqqVHU2BDSATOdJe6xFboG/view?usp=sharing">Chicken Lollipop</a>
-	<div class="item-footer">
-		<span>₹230</span>
-		<button onclick="addToCart('Chicken Lollipop',230)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1tdTyaoSwCi3rijz8i8DH7KEqX1U1uUwJ/view?usp=sharing">Chicken Tikka</a>
-	<div class="item-footer">
-		<span>₹180</span>
-		<button onclick="addToCart('Chicken Tikka',180)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href=""https://drive.google.com/file/d/1CRmVmg7M-TzlX1yJdc3JgiSJDdB4CfMX/view?usp=sharing">Chilli Chicken</a>
-	<div class="item-footer">
-		<span>₹210</span>
-		<button onclick="addToCart('Chilli Chicken',210)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1wPF26M3SLZPm1heStC9yrTvGcIzlcG8e/view?usp=sharing">Chicken Manchurian</a>
-	<div class="item-footer">
-		<span>₹150</span>
-		<button onclick="addToCart('Chicken Manchurian',150)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1Zpax5PIjO7P5vqKQ99GXImPr4HFO3qjm/view?usp=sharing">Fish Fry</a>
-	<div class="item-footer">
-		<span>₹250</span>
-		<button onclick="addToCart('Fish Fry',250)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1lX6-sy8I6MEhX7fCsRKXqu2VWy8YiD7g/view?usp=sharing">Prawns Fry</a>
-	<div class="item-footer">
-		<span>₹250</span>
-		<button onclick="addToCart('Prawns Fry',250)">Add</button>
-	</div>
-</div>
-
-<button onclick="goBack()">⬅ Back</button>
-</div>
-
-<!-- ADDS -->
-<div id="adds" class="hidden">
-<h2>ADDs</h2>
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1b6Qrw8UKdBxkiznMdXCMCRuZLsJX39r2/view?usp=sharing">White Chutney</a>
-	<div class="item-footer">
-		<span>₹10</span>
-		<button onclick="addToCart('White Chutney',10)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1f8jIwcJSSG9RE3fi5WTKm8cIuyIcT1sX/view?usp=sharing">Red Chutney</a>
-	<div class="item-footer">
-		<span>₹10</span>
-		<button onclick="addToCart('Red Chutney',10)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1BpcOXKPm8Ip9_5TmU9k1rkgzbOJoTDIj/view?usp=sharing">Green Chutney</a>
-	<div class="item-footer">
-		<span>₹10</span>
-		<button onclick="addToCart('Green Chutney',10)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/19sAaMlzPsc131tk4Q6zET_H1HDZC4yLH/view?usp=sharing">Bombai Chutney</a>
-	<div class="item-footer">
-		<span>₹10</span>
-		<button onclick="addToCart('Bombai Chutney',10)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/13-6lrx-QaJW8CmY0F7SP1O3_XESLRWUY/view?usp=sharing">Potato Curry</a>
-	<div class="item-footer">
-		<span>₹20</span>
-		<button onclick="addToCart('Potato Curry',20)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1KHC_-6BQBh8BLjs2GmlZdrlObpNO_Sy3/view?usp=sharing">Puri Curry</a>
-	<div class="item-footer">
-		<span>₹20</span>
-		<button onclick="addToCart('Puri Curry',20)">Add</button>
-	</div>
-</div>
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1LlvvfFcEn4Q_rRC8yUGwmiY6hU4bI1-Z/view?usp=sharing">Veg Sherva</a>
-	<div class="item-footer">
-		<span>₹20</span>
-		<button onclick="addToCart('Veg Sherva',20)">Add</button>
-	</div>
-</div>
-
-<div class="item-card">
-	<a href="https://drive.google.com/file/d/1NiQcziS42vLD4_pj9PKse-qIeq6P6zBB/view?usp=sharing">Non-Veg Sherva (Chicken)</a>
-	<div class="item-footer">
-		<span>₹30</span>
-		<button onclick="addToCart('Non-Veg Sherva (Chicken)',30)">Add</button>
-	</div>
-</div>
-
-<button onclick="goBack()">⬅ Back</button>
-</div>
-
-<!-- CART -->
-<div id="cartPage" class="hidden">
-<h2>Your Cart</h2>
-<div id="cartItems"></div>
-<h3 id="total"></h3>
-<button onclick="goBack()">⬅ Back</button>
-</div>
-
-</div>
-
-<button class="cart-btn" onclick="openCart()">🛒 Cart</button>
-
-<script>
-let cart = [];
-let total = 0;
-
-function openSection(id) {
-    document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-}
-
-function goBack() {
-    document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
-    document.getElementById('categories').style.display = 'block';
-}
-
-function addToCart(name, price) {
-    cart.push({name, price});
-    total += price;
-    alert(name + " added to cart");
-}
-function openCart() {
-    document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
-    document.getElementById('cartPage').style.display = 'block';
-
-    renderCart();
-}
-function renderCart() {
-    let html = "";
-    total = 0;
-
-    cart.forEach((item, index) => {
-        total += item.price;
-        html += `
-        <div class="cart-item">
-            <span>${item.name} - ₹${item.price}</span>
-            <button onclick="removeFromCart(${index})">❌</button>
-        </div>
-        `;
-    });
-
-    document.getElementById("cartItems").innerHTML = html || "<p>No items in cart</p>";
-    document.getElementById("total").innerText = "Total Amount: ₹" + total;
-}
-
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    renderCart();
-}
-</script>
+		function removeFromCart(name) {
+			delete cart[name];
+			updateCartCount();
+			renderCart();
+		}
+	</script>
 
 </body>
 
 </html>
-
-
-
-
-
