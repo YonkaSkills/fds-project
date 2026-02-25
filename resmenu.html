@@ -72,12 +72,6 @@
 			font-weight: bold;
 		}
 
-		.item-footer {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-top: 10px;
-		}
 
 		/* General button reset */
 		button {
@@ -89,105 +83,17 @@
 			cursor: pointer;
 		}
 
-		/* Plate counter controls on item cards */
-		.plate-control {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-		}
 
-		.plate-control button {
-			background: #4c9e62;
-			color: white;
-			border: none;
-			width: 35px;
-			height: 35px;
-			border-radius: 5px;
-			font-size: 18px;
-			line-height: 1;
-			cursor: pointer;
-			padding: 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
 
-		.plate-control button:hover {
-			background: #e05500;
-		}
 
-		.plate-count {
-			min-width: 28px;
-			text-align: center;
-			font-size: 16px;
-			font-weight: bold;
-		}
 
-		.add-cart-btn {
-			background: #fc6602;
-			color: white;
-			border: none;
-			padding: 7px 13px;
-			border-radius: 5px;
-			cursor: pointer;
-			font-size: 14px;
-		}
 
-		.add-cart-btn:hover {
-			background: #e05500;
-		}
 
-		.cart-btn {
-			position: fixed;
-			bottom: 20px;
-			right: 20px;
-			background: #ff7043;
-			padding: 14px 20px;
-		}
 
-		/* Cart page items */
-		.cart-item {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: 8px 0;
-			border-bottom: 1px solid #eee;
-		}
 
-		.cart-item-qty {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-		}
 
-		.cart-item-qty button {
-			background: #fc6602;
-			color: white;
-			border: none;
-			width: 26px;
-			height: 26px;
-			border-radius: 5px;
-			font-size: 16px;
-			line-height: 1;
-			cursor: pointer;
-			padding: 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
 
-		.cart-item-qty button:hover {
-			background: #e05500;
-		}
 
-		.cart-item button.remove-btn {
-			background: #ffffff;
-			border: 1px solid #ccc;
-			padding: 4px 10px;
-			border-radius: 6px;
-			font-size: 14px;
-			color: #333;
-		}
 	</style>
 </head>
 
@@ -227,14 +133,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Upma',20)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<!-- Sub-categories -->
@@ -259,14 +157,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹25</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Mysore Bajji',25)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<!-- Punugulu -->
@@ -278,14 +168,6 @@
 						<a href="https://drive.google.com/file/d/1AL8Z_fGJTqPW5j6t50SxwUdJa_MRb_SV/view?usp=sharing"
 							style="font-size: 18px;">Punugulu</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹25</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Punugulu',25)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -301,14 +183,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Vada',30)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<!-- Puri -->
@@ -320,14 +194,6 @@
 						<a href="https://drive.google.com/file/d/161FrWuM5ZaT4Dk_rFrRPiiUb8WFa41Lz/view?usp=sharing"
 							style="font-size: 18px;">Puri</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Puri',30)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -343,14 +209,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹35</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chapathi',35)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<!-- Parotta -->
@@ -362,14 +220,6 @@
 						<a href="https://drive.google.com/file/d/14wf6yhT09Ncf6zokXPagFQStzG7-igNw/view?usp=sharing"
 							style="font-size: 18px;">Parotta</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹35</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Parotta',35)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -391,14 +241,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Idly',20)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -409,14 +251,6 @@
 						<a href="https://drive.google.com/file/d/1dy3W1CW4N10TNBFMdS7oJwNSGi_RdTDP/view?usp=sharing"
 							style="font-size: 18px;">Sambar Idly</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹25</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Sambar Idly',25)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -431,14 +265,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Carrot Idly',30)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -449,14 +275,6 @@
 						<a href="https://drive.google.com/file/d/1E3QM-JIbIQwEZYTZXmH0kJqCwwHz-V8W/view?usp=sharing"
 							style="font-size: 18px;">Beetroot Idly</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Beetroot Idly',30)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -478,14 +296,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Plain Dosa',30)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -496,14 +306,6 @@
 						<a href="https://drive.google.com/file/d/1eeU-tal9-26tax5mB6I_U0r9XhSbKVf4/view?usp=sharing"
 							style="font-size: 18px;">Onion Dosa</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹35</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Onion Dosa',35)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -518,14 +320,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹40</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Masala Dosa',40)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -536,14 +330,6 @@
 						<a href="https://drive.google.com/file/d/1pLYsJPlbeCMz18UIzgya1Zey9rrEZRPj/view?usp=sharing"
 							style="font-size: 18px;">Ravva Dosa</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹40</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Ravva Dosa',40)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -558,14 +344,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹45</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Egg Dosa',45)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -576,14 +354,6 @@
 						<a href="https://drive.google.com/file/d/1LONYAVL4WoKiodHmA6IMXzRKjvyy0YAc/view?usp=sharing"
 							style="font-size: 18px;">Pesarattu Upma</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹45</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Pesarattu Upma',45)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -605,14 +375,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹90</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chicken Noodles',90)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -625,14 +387,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹80</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Egg Noodles',80)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -643,14 +397,6 @@
 						<a href="https://drive.google.com/file/d/1hY1mEvzZf4tsZtLAekt7tNliYEHpwa8Z/view?usp=sharing"
 							style="font-size: 18px;">Veg Noodles</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹70</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Veg Noodles',70)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -672,14 +418,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹90</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chicken Fried Rice',90)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -692,14 +430,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹80</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Egg Fried Rice',80)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -710,14 +440,6 @@
 						<a href="https://drive.google.com/file/d/1FbjowXH_AoTokU6gpqAicrznnTH1sdIQ/view?usp=sharing"
 							style="font-size: 18px;">Veg Fried Rice</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹70</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Veg Fried Rice',70)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -740,14 +462,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹300</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chicken Dum Biryani',300)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -758,14 +472,6 @@
 						<a href="https://drive.google.com/file/d/1aNKSDEBxfr1ZEOxLb0MPOFQBFnojScgZ/view?usp=sharing"
 							style="font-size: 18px;">Chicken FryPiece Biryani</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹300</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chicken FryPiece Biryani',300)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -780,14 +486,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹400</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Mixed Biryani',400)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -798,14 +496,6 @@
 						<a href="https://drive.google.com/file/d/19T3_7gMAxYrUMWt1c0WXtlFHZBOZnWAp/view?usp=sharing"
 							style="font-size: 18px;">Mutton Biryani</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹350</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Mutton Biryani',350)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -820,14 +510,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹320</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Prawns Biryani',320)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -840,14 +522,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹250</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Paneer Biryani',250)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -858,14 +532,6 @@
 						<a href="https://drive.google.com/file/d/1dO_Ad1_la34pS-8BvfWBmpIbRZzYWtnr/view?usp=sharing"
 							style="font-size: 18px;">Mushroom Biryani</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹250</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Mushroom Biryani',250)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -887,14 +553,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹220</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chicken 65',220)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -905,14 +563,6 @@
 						<a href="https://drive.google.com/file/d/17fnaZGWqSZEqqVHU2BDSATOdJe6xFboG/view?usp=sharing"
 							style="font-size: 18px;">Chicken Lollipop</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹230</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chicken Lollipop',230)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -927,14 +577,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹180</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chicken Tikka',180)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -945,14 +587,6 @@
 						<a href="https://drive.google.com/file/d/1CRmVmg7M-TzlX1yJdc3JgiSJDdB4CfMX/view?usp=sharing"
 							style="font-size: 18px;">Chilli Chicken</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹210</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chilli Chicken',210)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -967,14 +601,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹150</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Chicken Manchurian',150)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -987,14 +613,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹250</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Fish Fry',250)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -1005,14 +623,6 @@
 						<a href="https://drive.google.com/file/d/1lX6-sy8I6MEhX7fCsRKXqu2VWy8YiD7g/view?usp=sharing"
 							style="font-size: 18px;">Prawns Fry</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹250</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Prawns Fry',250)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -1034,14 +644,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹10</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'White Chutney',10)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -1052,14 +654,6 @@
 						<a href="https://drive.google.com/file/d/1f8jIwcJSSG9RE3fi5WTKm8cIuyIcT1sX/view?usp=sharing"
 							style="font-size: 18px;">Red Chutney</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹10</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Red Chutney',10)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -1074,14 +668,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹10</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Green Chutney',10)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -1092,14 +678,6 @@
 						<a href="https://drive.google.com/file/d/19sAaMlzPsc131tk4Q6zET_H1HDZC4yLH/view?usp=sharing"
 							style="font-size: 18px;">Bombai Chutney</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹10</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Bombai Chutney',10)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -1114,14 +692,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Potato Curry',20)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -1132,14 +702,6 @@
 						<a href="https://drive.google.com/file/d/1KHC_-6BQBh8BLjs2GmlZdrlObpNO_Sy3/view?usp=sharing"
 							style="font-size: 18px;">Puri Curry</a>
 						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
-					</div>
-				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Puri Curry',20)">Add</button>
 					</div>
 				</div>
 			</div>
@@ -1154,14 +716,6 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹20</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Veg Sherva',20)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<div class="item-card">
@@ -1174,73 +728,14 @@
 						<span style="font-weight: bold; color: #1f6f5b;">₹30</span>
 					</div>
 				</div>
-				<div class="item-footer" style="justify-content: flex-end; margin-top: 5px;">
-					<div class="plate-control">
-						<button onclick="changeCount(this,-1)">−</button>
-						<span class="plate-count">0</span>
-						<button onclick="changeCount(this,1)">+</button>
-						<button class="add-cart-btn" onclick="add(this,'Non-Veg Sherva (Chicken)',30)">Add</button>
-					</div>
-				</div>
 			</div>
 
 			<button onclick="goBack()">⬅ Back</button>
 		</div>
 
-		<!-- CART PAGE -->
-		<div id="cartPage" class="hidden">
-			<h2>Your Cart</h2>
-			<div id="cartItems"></div>
-			<h3 id="cartTotal"></h3>
-			<button onclick="goBack()">⬅ Back</button>
-		</div>
 
-	</div>
-
-	<button class="cart-btn" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
 
 	<script>
-		// cart = { name: { price, qty } }
-		let cart = {};
-
-		/* -------- Plate counter on item cards -------- */
-		function changeCount(btn, delta) {
-			const control = btn.parentElement;
-			const countSpan = control.querySelector('.plate-count');
-			let count = parseInt(countSpan.textContent) + delta;
-			if (count < 0) count = 0;
-			countSpan.textContent = count;
-		}
-
-		/* -------- Add from card -------- */
-		function add(btn, name, price) {
-			const control = btn.parentElement;
-			const countSpan = control.querySelector('.plate-count');
-			let qty = parseInt(countSpan.textContent);
-			if (qty === 0) {
-				alert("Please select at least 1 plate using the + button.");
-				return;
-			}
-
-			if (cart[name]) {
-				cart[name].qty += qty;
-			} else {
-				cart[name] = { price, qty };
-			}
-
-			// Reset counter on card
-			countSpan.textContent = '0';
-			updateCartCount();
-			alert(qty + " plate(s) of " + name + " added to cart!");
-		}
-
-		/* -------- Update cart badge -------- */
-		function updateCartCount() {
-			let total = 0;
-			for (let key in cart) total += cart[key].qty;
-			document.getElementById('cartCount').textContent = total;
-		}
-
 		/* -------- Navigation -------- */
 		function openSection(id) {
 			document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
@@ -1250,55 +745,6 @@
 		function goBack() {
 			document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
 			document.getElementById('categories').style.display = 'block';
-		}
-
-		/* -------- Cart page -------- */
-		function openCart() {
-			document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
-			document.getElementById('cartPage').style.display = 'block';
-			renderCart();
-		}
-
-		function renderCart() {
-			let html = "";
-			let grandTotal = 0;
-
-			for (let name in cart) {
-				const item = cart[name];
-				const subtotal = item.price * item.qty;
-				grandTotal += subtotal;
-				html += `
-				<div class="cart-item">
-					<span><strong>${name}</strong> — ₹${item.price} × </span>
-					<div class="cart-item-qty">
-						<button onclick="cartChangeQty('${name}', -1)">−</button>
-						<span>${item.qty}</span>
-						<button onclick="cartChangeQty('${name}', 1)">+</button>
-					</div>
-					<span>₹${subtotal}</span>
-					<button class="remove-btn" onclick="removeFromCart('${name}')">❌ Remove</button>
-				</div>`;
-			}
-
-			document.getElementById("cartItems").innerHTML = html || "<p>No items in cart</p>";
-			document.getElementById("cartTotal").innerText =
-				grandTotal > 0 ? "Total Amount: ₹" + grandTotal : "";
-		}
-
-		function cartChangeQty(name, delta) {
-			if (!cart[name]) return;
-			cart[name].qty += delta;
-			if (cart[name].qty <= 0) {
-				delete cart[name];
-			}
-			updateCartCount();
-			renderCart();
-		}
-
-		function removeFromCart(name) {
-			delete cart[name];
-			updateCartCount();
-			renderCart();
 		}
 	</script>
 
